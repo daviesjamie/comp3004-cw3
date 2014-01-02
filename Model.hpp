@@ -24,7 +24,7 @@ class Model
         Model( string file );
 
         void load();
-        GLuint loadTexture( string texture );
+        GLuint load_texture( string texture );
 
         void rotate( float amount, glm::vec3 axes );
         void translate( glm::vec3 amounts );
@@ -32,7 +32,7 @@ class Model
 
         void render();
 
-        glm::mat4 getModel();
+        glm::mat4 get_model();
 };
 
 #endif // MODEL_HPP_INCLUDED

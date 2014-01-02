@@ -16,18 +16,18 @@ class Camera
     public:
         Camera();
 
-        void adjustElevation( float amount );
-        void adjustSpeed( float amount );
+        void adjust_elevation( float amount );
+        void adjust_speed( float amount );
         void stop();
         void turn( float angle );
 
-        glm::vec3 getPosition();
-        void setPosition( glm::vec3 position );
+        glm::vec3 get_position();
+        void set_position( glm::vec3 position );
 
-        glm::vec3 getDirection();
-        void setDirection( glm::vec3 direction );
+        glm::vec3 get_direction();
+        void set_direction( glm::vec3 direction );
 
-        glm::mat4 getMVP( glm::mat4 model );
+        glm::mat4 get_mvp( glm::mat4 model );
 };
 
 #endif // CAMERA_HPP_INCLUDED
