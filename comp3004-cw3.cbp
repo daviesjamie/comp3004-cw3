@@ -30,7 +30,14 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add directory="C:/Graphics/include" />
+			<Add directory="C:/Graphics/GLFW3/include" />
 		</Compiler>
+		<Linker>
+			<Add directory="C:/Graphics/lib" />
+			<Add directory="C:/Graphics/GLFW3/lib-mingw" />
+		</Linker>
+		<Unit filename="Camera.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
