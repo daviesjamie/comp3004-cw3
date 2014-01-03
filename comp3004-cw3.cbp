@@ -38,6 +38,9 @@
 			<Add directory="C:/Graphics/GLFW3/lib-mingw" />
 		</Linker>
 		<Unit filename="Camera.hpp" />
+		<Unit filename="Model.hpp" />
+		<Unit filename="objloader.cpp" />
+		<Unit filename="objloader.hpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

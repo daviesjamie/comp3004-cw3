@@ -1,6 +1,7 @@
 #ifndef MODEL_HPP_INCLUDED
 #define MODEL_HPP_INCLUDED
 
+#include <glm/glm.hpp>
 #include <string>
 #include <vector>
 
