@@ -36,7 +36,11 @@ vector<string> split( const string &str, char delimiter )
     return elements;
 }
 
-
+/*
+ * A simple, rudimentary OBJ file loader. Returns true if successful.
+ * Loads vertex, normal and texture coordinates from the file into the given vectors.
+ * Adopted from http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading
+*/
 bool load_obj( const char* path, vector<glm::vec3> &vertices, vector<glm::vec2> &uvs, vector<glm::vec3> &normals )
 {
     vector<glm::vec3> tempVertices;
