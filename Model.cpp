@@ -4,8 +4,8 @@
 #include <memory>
 #include <stdio.h>
 
-#include "objloader.hpp"
 #include "Model.hpp"
+#include "utils/objloader.hpp"
 
 Model::Model( string file )
 {
