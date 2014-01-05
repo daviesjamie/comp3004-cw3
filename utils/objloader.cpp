@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string>
 
-#include "common/objloader.hpp"
+#include "objloader.hpp"
 
 using namespace std;
 
