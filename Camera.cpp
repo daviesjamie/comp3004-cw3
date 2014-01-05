@@ -64,3 +64,9 @@ glm::mat4 Camera::get_mvp( glm::mat4 model )
 {
     return projection * view * model;
 }
+
+void Camera::status()
+{
+    fprintf( stdout, "Position: ( %f, %f, %f )\n", position.x, position.y, position.z );
+    fprintf( stdout, "Looking at: ( %f, %f, %f )\n", direction.x, direction.y, direction.z );
+}

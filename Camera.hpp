@@ -30,6 +30,8 @@ class Camera
         void set_direction( glm::vec3 dir );
 
         glm::mat4 get_mvp( glm::mat4 model );
+
+        void status();
 };
 
 #endif // CAMERA_HPP_INCLUDED
