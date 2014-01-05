@@ -13,6 +13,8 @@ int screen_height = 480;
 GLFWwindow* window;
 GLuint shaderProgram;
 
+Model clanger;
+
 static void keyHandler( GLFWwindow* window, int key, int scancode, int action, int mods )
 {
     if( action == GLFW_PRESS )
@@ -133,14 +135,17 @@ void load_shaders()
     shaderProgram = link_shaders( shaders );
 }
 
-bool load_models()
+void load_models()
 {
-
+    clanger = new Model( "models/clanger.obj" );
+    clanger.load();
+    clanger.loadTexture( "textures/clanger.tga" );
 }
 
 void cleanup()
 {
-
+    glfwDestroyWindow( window );
+    glfwTerminate();
 }
 
 int main( int argc, char* argv[] )
@@ -148,7 +153,7 @@ int main( int argc, char* argv[] )
     if( !init() ) exit( EXIT_FAILURE );
 
     load_shaders();
-
+    load_models();
 
     while( running )
     {
@@ -156,4 +161,5 @@ int main( int argc, char* argv[] )
     }
 
     cleanup();
+    return 0;
 }
