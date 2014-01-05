@@ -65,6 +65,13 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
     }
 }
 
+static void resizeHandler( GLFWwindow* window, int width, int height )
+{
+    screen_width = width;
+    screen_height = height;
+    glViewport( 0, 0, width, height );
+}
+
 bool init()
 {
 
