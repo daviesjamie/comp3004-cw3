@@ -72,3 +72,32 @@ GLuint Model::load_texture( string textureFile )
 
     return textureID[ 0 ];
 }
+
+void Model::rotate( float amount, glm::vec3 axes )
+{
+    model = glm::rotate( model, amount, axes );
+}
+
+void Model::scale( glm::vec3 amounts )
+{
+    model = glm::scale( model, amounts );
+}
+
+void Model::translate( glm::vec3 amounts )
+{
+    model = glm::translate( model, amounts );
+}
+
+void Model::render()
+{
+    glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
+    glBindTexture( GL_TEXTURE_2D, textureID[ 0 ] );
+    glBindVertexArray( vao[ 0 ] );
+    glBindBuffer( GL_ARRAY_BUFFER, vbo[ 0 ] );
+    glDrawArrays( GL_TRIANGLES, 0, vertices.size() );
+}
+
+glm::mat4 Model::get_model()
+{
+    return model;
+}

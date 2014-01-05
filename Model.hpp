@@ -28,8 +28,8 @@ class Model
         GLuint load_texture( string texture );
 
         void rotate( float amount, glm::vec3 axes );
-        void translate( glm::vec3 amounts );
         void scale( glm::vec3 amounts );
+        void translate( glm::vec3 amounts );
 
         void render();
 
