@@ -1,8 +1,6 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glimg/glimg.h>
-#include <glimg/ImageSet.h>
-#include <glimg/TextureGeneratorExceptions.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
 #include <memory>
@@ -46,42 +44,33 @@ void Model::load()
 */
 GLuint Model::load_texture( string textureFile )
 {
-    /*glEnable( GL_TEXTURE_2D );
+    // Load image
+    glimg::ImageSet** images = new glimg::ImageSet*[ 1 ];
+    images[ 0 ] = glimg::loaders::stb::LoadFromFile( textureFile.c_str() );
+    int width = images[ 0 ]->GetDimensions().width;
+    int height = images[ 0 ]->GetDimensions().height;
+
+    // Generate texture
+    glEnable( GL_TEXTURE_2D );
     glGenTextures( 1, textureID );
-    glActiveTexture( GL_TEXTURE0 );
-    glBindTexture( GL_TEXTURE_2D, textureID[ 0 ] );*/
+    glBindTexture( GL_TEXTURE_2D, textureID[ 0 ] );
 
-    GLuint theTexture;
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
+    glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
 
-    try
-    {
-        std::auto_ptr<glimg::ImageSet> imgset( glimg::loaders::stb::LoadFromFile( textureFile ) );
-        theTexture = glimg::CreateTexture( imgset.get(), 0 );
+    glPixelStorei( GL_UNPACK_ALIGNMENT, images[ 0 ]->GetFormat().LineAlign() );
+    const glimg::SingleImage &img = images[ 0 ]->GetImage( 0, 0, 0 );
+    const glimg::Dimensions &dim = img.GetDimensions();
+    const glimg::OpenGLPixelTransferParams fmt = glimg::GetUploadFormatType( img.GetFormat(), 0 );
 
-        /*glimg::ImageSet imgset( glimg::loaders::stb::LoadFromFile( textureFile ) );
-        glimg::SingleImage img = imgset.GetImage( 0, 0, 0 );
+    glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, dim.width, dim.height, 0, fmt.format, fmt.type, img.GetImageData() );
+    glGenerateMipmap( GL_TEXTURE_2D );
 
-        glimg::Dimensions dims = img.GetDimensions();
-        glimg::OpenGLPixelTransferParams fmt = glimg::GetUploadFormatType( img.GetFormat(), 0 );
-
-        glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, dims.width, dims.height, 0, fmt.format, fmt.type, img.GetImageData() );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-        glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR );
-        glGenerateMipmap( GL_TEXTURE_2D );*/
-    }
-    catch( glimg::loaders::stb::StbLoaderException &e )
-    {
-        fprintf( stderr, "Image loading failed." );
-    }
-    catch( glimg::TextureGenerationException &e )
-    {
-        fprintf( stderr, "Texture creation failed." );
-    }
-
-    //return textureID[ 0 ];
-    return theTexture;
+    // Clean up
+    delete images[ 0 ];
+    delete[] images;
 }
 
 void Model::rotate( float amount, glm::vec3 axes )

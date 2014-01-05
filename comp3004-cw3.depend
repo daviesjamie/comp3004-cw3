@@ -293,19 +293,17 @@
 	<GL/gl.h>
 	<GL/glu.h>
 
-1388961463 c:\users\jamie\desktop\comp3004-cw3\model.hpp
+1388965314 c:\users\jamie\desktop\comp3004-cw3\model.hpp
 	<glm/glm.hpp>
 	<string>
 	<vector>
 
 1388963256 c:\users\jamie\desktop\comp3004-cw3\shader.hpp
 
-1388963090 source:c:\users\jamie\desktop\comp3004-cw3\model.cpp
+1388965539 source:c:\users\jamie\desktop\comp3004-cw3\model.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glimg/glimg.h>
-	<glimg/ImageSet.h>
-	<glimg/TextureGeneratorExceptions.h>
 	<glm/glm.hpp>
 	<glm/gtx/transform.hpp>
 	<memory>
