@@ -17,7 +17,7 @@ class Model
 
         vector<glm::vec3> vertices;
         vector<glm::vec3> normals;
-        vector<glm::vec3> uvs;
+        vector<glm::vec2> uvs;
 
         glm::mat4 model;
 

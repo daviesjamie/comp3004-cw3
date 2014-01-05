@@ -13,7 +13,7 @@ int screen_height = 480;
 GLFWwindow* window;
 GLuint shaderProgram;
 
-Model clanger;
+Model clanger( "models/clanger.obj" );
 
 static void keyHandler( GLFWwindow* window, int key, int scancode, int action, int mods )
 {
@@ -24,7 +24,6 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
             // Quit
             case GLFW_KEY_ESCAPE:
             case GLFW_KEY_Q:
-                running = false;
                 break;
 
             // Screenshot location
@@ -115,11 +114,13 @@ bool init()
     }
 
     // Set key/resize callback functions
-    glfwSetKeyCallback( window, keyHandler() );
-    glfwSetWindowSizeCallback( window, resizeHandler() );
+    glfwSetKeyCallback( window, keyHandler );
+    glfwSetWindowSizeCallback( window, resizeHandler );
 
     glEnable( GL_DEPTH_TEST );
     glDepthFunc( GL_LESS );
+
+    return true;
 }
 
 void load_shaders()
@@ -137,9 +138,8 @@ void load_shaders()
 
 void load_models()
 {
-    clanger = new Model( "models/clanger.obj" );
     clanger.load();
-    clanger.loadTexture( "textures/clanger.tga" );
+    clanger.load_texture( "textures/clanger.tga" );
 }
 
 void cleanup()
@@ -154,11 +154,6 @@ int main( int argc, char* argv[] )
 
     load_shaders();
     load_models();
-
-    while( running )
-    {
-
-    }
 
     cleanup();
     return 0;

@@ -1,8 +1,9 @@
 #include <GL/glew.h>
 #include <cstdio>
+#include <cstdlib>
 #include <vector>
 
-#include "filetobuffer.hpp"
+#include "utils/filetobuffer.hpp"
 #include "shader.hpp"
 
 GLint create_shader( const char* filename, GLenum type )
@@ -42,4 +43,28 @@ GLint link_shaders( const std::vector<GLint> &shaders )
     glLinkProgram( program );
 
     return program;
+}
+
+void printLog( GLuint object )
+{
+    GLint log_length = 0;
+    if( glIsShader( object ) )
+        glGetShaderiv( object, GL_INFO_LOG_LENGTH, &log_length );
+    else if( glIsProgram( object ) )
+        glGetProgramiv( object, GL_INFO_LOG_LENGTH, &log_length );
+    else
+    {
+        fprintf( stderr, "printlog: Not a shader or a program\n" );
+        return;
+    }
+
+    char* log = ( char* )malloc( log_length );
+
+    if( glIsShader( object ) )
+        glGetShaderInfoLog( object, log_length, NULL, log );
+    else if( glIsProgram( object ) )
+        glGetProgramInfoLog( object, log_length, NULL, log );
+
+    fprintf( stderr, "%s", log );
+    free( log );
 }

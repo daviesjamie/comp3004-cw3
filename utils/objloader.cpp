@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <cstdlib>
 #include <fstream>
 #include <GL/glew.h>
@@ -41,7 +42,7 @@ vector<string> split( const string &str, char delimiter )
  * Loads vertex, normal and texture coordinates from the file into the given vectors.
  * Adopted from http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading
 */
-bool load_obj( const char* path, vector<glm::vec3> &vertices, vector<glm::vec2> &uvs, vector<glm::vec3> &normals )
+bool load_obj( string path, vector<glm::vec3> &vertices, vector<glm::vec2> &uvs, vector<glm::vec3> &normals )
 {
     vector<glm::vec3> tempVertices;
     vector<glm::vec2> tempTextures;
@@ -51,7 +52,7 @@ bool load_obj( const char* path, vector<glm::vec3> &vertices, vector<glm::vec2> 
     vector<unsigned int> normIndices;
 
     fstream file;
-    file.open( path );
+    file.open( path.c_str() );
 
     if( file.is_open() )
     {
@@ -93,7 +94,7 @@ bool load_obj( const char* path, vector<glm::vec3> &vertices, vector<glm::vec2> 
                 split( line, ' ', parts );
                 double x = atof( parts[ 1 ].c_str() );
                 double y = atof( parts[ 2 ].c_str() );
-                tempTextures.push_back( glm::vec2( x, y ) ) );
+                tempTextures.push_back( glm::vec2( x, y ) );
                 continue;
             }
 
@@ -132,13 +133,13 @@ bool load_obj( const char* path, vector<glm::vec3> &vertices, vector<glm::vec2> 
 
                     if( faceparts.size() != 3 )
                     {
-                        stderr << "Invalid face declaration: " + parts[ i ];
+                        fprintf( stderr, "Invalid face declaration: %s", parts[ i ].c_str() );
                         return false;
                     }
 
-                    vertIndices.push_back( atoi( faceparts[ 0 ].c_str() );
-                    uvIndices.push_back( atoi( faceparts[ 1 ].c_str() );
-                    normIndices.push_back( atoi( faceparts[ 2 ].c_str() );
+                    vertIndices.push_back( atoi( faceparts[ 0 ].c_str() ) );
+                    uvIndices.push_back( atoi( faceparts[ 1 ].c_str() ) );
+                    normIndices.push_back( atoi( faceparts[ 2 ].c_str() ) );
                 }
             }
             continue;
@@ -152,8 +153,8 @@ bool load_obj( const char* path, vector<glm::vec3> &vertices, vector<glm::vec2> 
         vertices.push_back( vertex );
 
         int uvIndex = uvIndices[ i ];
-        glm::vec3 uv = tempTextures[ uvIndex - 1 ];
-        textures.push_back( uv );
+        glm::vec2 uv = tempTextures[ uvIndex - 1 ];
+        uvs.push_back( uv );
 
         int normIndex = normIndices[ i ];
         glm::vec3 norm = tempNormals[ normIndex - 1 ];

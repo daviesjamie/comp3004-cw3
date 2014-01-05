@@ -6,6 +6,6 @@
 
 using namespace std;
 
-bool load_obj( const char* path, std::vector<glm::vec3> &vertices, std::vector<glm::vec2> &uvs, std::vector<glm::vec3> &normals );
+bool load_obj( string path, std::vector<glm::vec3> &vertices, std::vector<glm::vec2> &uvs, std::vector<glm::vec3> &normals );
 
 #endif // OBJLOADER_HPP_INCLUDED
