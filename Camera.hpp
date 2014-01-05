@@ -20,6 +20,7 @@ class Camera
 
         void adjust_elevation( float amount );
         void adjust_speed( float amount );
+        void move();
         void stop();
         void turn( float angle );
 

@@ -29,7 +29,16 @@ void Camera::adjust_speed( float amount )
         speed = 0.0f;
 }
 
-void Camear::stop()
+void Camera::move()
+{
+    if( speed > 0.0f )
+    {
+        position = position + glm::vec3( direction.x * speed, direction.y * speed, direction.z * speed );
+        view = glm::lookAt( position, position + direction, UP_DIR );
+    }
+}
+
+void Camera::stop()
 {
     speed = 0.0f;
 }
