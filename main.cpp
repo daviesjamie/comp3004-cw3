@@ -56,6 +56,11 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
             // Stop camera
             case GLFW_KEY_SPACE:
                 break;
+
+            // Display help screen
+            case GLFW_KEY_H:
+            case GLFW_KEY_SLASH:
+                break;
         }
     }
 }
