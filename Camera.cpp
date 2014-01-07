@@ -1,12 +1,16 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/rotate_vector.hpp>
+#include <iostream>
 
 #include "Camera.hpp"
 
 Camera::Camera()
 {
     reset();
+
+    touring = false;
+    tour_speed = 10.0f;
 
     tour_positions.push_back( glm::vec3( -35.948860, 1.680134, 48.638687 ) );
     tour_positions.push_back( glm::vec3( -45.744678, 1.850140, 18.489935 ) );
@@ -108,7 +112,52 @@ void Camera::reset()
     view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
 }
 
-void Camera::tour()
+void Camera::animateTour( float time_diff )
 {
+    if( touring ) {
+        if( current_frame + 1 < tour_positions.size() )
+        {
+            glm::vec3 cur = position;
+            glm::vec3 next = tour_positions[ current_frame + 1];
+            glm::vec3 vdiff = next - cur;
+            float total_dist = glm::sqrt( vdiff[ 0 ] * vdiff[ 0 ] + vdiff[ 1 ] * vdiff[ 1 ] + vdiff[ 2 ] * vdiff[ 2 ] );
+            float dist_travelled = tour_speed * time_diff;
 
+            if( dist_travelled > total_dist )
+            {
+                position = tour_positions[ current_frame + 1 ];
+                current_frame++;
+            }
+            else
+            {
+                vdiff = ( vdiff / total_dist ) * dist_travelled;
+                position = position + vdiff;
+            }
+
+            view = glm::lookAt( position, glm::vec3( 0.0f, 1.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+        }
+        else
+        {
+            endTour();
+        }
+    }
+}
+
+void Camera::startTour()
+{
+    touring = true;
+    current_frame = 0;
+    position = tour_positions[ 0 ];
+    view = glm::lookAt( position, glm::vec3( 0.0f, 1.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+}
+
+void Camera::endTour()
+{
+    touring = false;
+    reset();
+}
+
+bool Camera::isTouring()
+{
+    return touring;
 }

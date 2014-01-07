@@ -14,6 +14,10 @@ class Camera
         glm::mat4 projection;
         glm::mat4 view;
 
+        bool touring;
+        int current_frame;
+        float tour_speed;
+
         std::vector<glm::vec3> tour_positions;
 
     public:
@@ -41,6 +45,10 @@ class Camera
         void reset();
 
         void tour();
+        bool isTouring();
+        void startTour();
+        void animateTour( float time_diff );
+        void endTour();
 };
 
 #endif // CAMERA_HPP_INCLUDED

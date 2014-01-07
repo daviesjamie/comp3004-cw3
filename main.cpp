@@ -64,60 +64,74 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
 
             // Start tour
             case GLFW_KEY_T:
+                if( !camera.isTouring() )
+                    camera.startTour();
                 break;
 
             // End tour
             case GLFW_KEY_E:
+                if( camera.isTouring() )
+                    camera.endTour();
                 break;
 
             // Turn camera left
             case GLFW_KEY_LEFT:
-                camera.yaw( 2 );
+                if( !camera.isTouring() )
+                    camera.yaw( 2 );
                 break;
 
             // Turn camera right
             case GLFW_KEY_RIGHT:
-                camera.yaw( -2 );
+                if( !camera.isTouring() )
+                    camera.yaw( -2 );
                 break;
 
             // Tilt camera up
             case GLFW_KEY_W:
-                camera.pitch( 2 );
+                if( !camera.isTouring() )
+                    camera.pitch( 2 );
                 break;
 
             // Tilt camera down
             case GLFW_KEY_S:
-                camera.pitch( -2 );
+                if( !camera.isTouring() )
+                    camera.pitch( -2 );
                 break;
 
             // Raise camera
             case GLFW_KEY_PAGE_UP:
-                camera.adjustElevation( 0.5 );
+                if( !camera.isTouring() )
+                    camera.adjustElevation( 0.5 );
                 break;
 
             // Lower camera
             case GLFW_KEY_PAGE_DOWN:
-                camera.adjustElevation( -0.5 );
+                if( !camera.isTouring() )
+                    camera.adjustElevation( -0.5 );
                 break;
 
             // Speed up camera
             case GLFW_KEY_UP:
-                camera.adjustSpeed( 0.01 );
+                if( !camera.isTouring() )
+                    camera.adjustSpeed( 0.01 );
                 break;
 
             // Slow down camera
             case GLFW_KEY_DOWN:
-                camera.adjustSpeed( -0.01 );
+                if( !camera.isTouring() )
+                    camera.adjustSpeed( -0.01 );
                 break;
 
             // Stop camera
             case GLFW_KEY_SPACE:
-                camera.stop();
+                if( !camera.isTouring() )
+                    camera.stop();
                 break;
 
             // Reset camera
             case GLFW_KEY_BACKSPACE:
-                camera.reset();
+                if( !camera.isTouring() )
+                    camera.reset();
                 break;
 
             // Log camera position to console
@@ -302,6 +316,7 @@ int main( int argc, char* argv[] )
         // LOGIC
 
         camera.move();
+        camera.animateTour( timeDiff );
 
         asteroid.translate( glm::vec3( -20.0f, -5.0f, 0.0f ) );
         asteroid.rotate( -timeDiff * 20, glm::vec3( 0.2f, 1.0f, 0.0f ) );
