@@ -2,6 +2,7 @@
 #define CAMERA_HPP_INCLUDED
 
 #include <glm/glm.hpp>
+#include <vector>
 
 class Camera
 {
@@ -12,6 +13,8 @@ class Camera
 
         glm::mat4 projection;
         glm::mat4 view;
+
+        std::vector<glm::vec3> tour_positions;
 
     public:
         Camera();

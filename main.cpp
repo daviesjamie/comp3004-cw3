@@ -41,6 +41,9 @@ const char* HELP_TEXT =
 "| H, ?      | Print this help message                           |\n"
 "|-----------|---------------------------------------------------|\n";
 
+const glm::vec3 SCREENSHOT_POSITION = glm::vec3( 4.246779, 3.069176, 9.035881 );
+const glm::vec3 SCREENSHOT_DIRECTION = glm::vec3( -4.021917, -0.841034, -9.171530 );
+
 static void keyHandler( GLFWwindow* window, int key, int scancode, int action, int mods )
 {
     if( action == GLFW_PRESS )
@@ -55,6 +58,8 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
 
             // Screenshot location
             case GLFW_KEY_P:
+                camera.setPosition( SCREENSHOT_POSITION );
+                camera.setDirection( SCREENSHOT_DIRECTION );
                 break;
 
             // Start tour

@@ -7,6 +7,8 @@
 Camera::Camera()
 {
     reset();
+
+
 }
 
 void Camera::adjustElevation( float amount )
