@@ -35,6 +35,7 @@ void printLog( GLuint object )
 
 GLint createShader( const char* filename, GLenum type )
 {
+    fprintf( stdout, "Loading %s...\n", filename );
     const GLchar* source = fileToBuffer( filename );
     if( source == NULL )
     {

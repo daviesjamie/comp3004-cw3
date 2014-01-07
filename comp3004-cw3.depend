@@ -372,7 +372,7 @@
 	<string>
 	"objloader.hpp"
 
-1389087593 source:h:\code\comp3004-cw3\shader.cpp
+1389121280 source:h:\code\comp3004-cw3\shader.cpp
 	<cstdio>
 	<cstdlib>
 	<GL/glew.h>
@@ -405,7 +405,7 @@
 	<glm/glm.hpp>
 	<vector>
 
-1389118948 source:h:\code\comp3004-cw3\model.cpp
+1389120545 source:h:\code\comp3004-cw3\model.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glimg/glimg.h>
@@ -763,12 +763,12 @@
 	<cstdarg>
 	<cstdio>
 
-1389104321 h:\code\comp3004-cw3\model.hpp
+1389120570 h:\code\comp3004-cw3\model.hpp
 	<glm/glm.hpp>
 	<string>
 	<vector>
 
-1389117348 source:h:\code\comp3004-cw3\camera.cpp
+1389121223 source:h:\code\comp3004-cw3\camera.cpp
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/rotate_vector.hpp>
@@ -784,11 +784,13 @@
 1389109301 h:\code\comp3004-cw3\camera.hpp
 	<glm/glm.hpp>
 
-1389117794 source:h:\code\comp3004-cw3\main.cpp
+1389121323 source:h:\code\comp3004-cw3\main.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/transform.hpp>
+	<glm/gtx/string_cast.hpp>
 	<iostream>
 	<vector>
 	"Camera.hpp"

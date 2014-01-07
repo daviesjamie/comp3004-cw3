@@ -126,6 +126,7 @@ GLint linkShaders( const std::vector<GLint> &shaders )
 int main( int argc, char* argv[] )
 {
     // Initialise GLFW
+    fprintf( stdout, "Initialising GLFW...\n" );
     if( !glfwInit() )
     {
         fprintf( stderr, "Failed to start GLFW\n" );
@@ -145,6 +146,7 @@ int main( int argc, char* argv[] )
     glfwMakeContextCurrent( window );
 
     // Initialise GLEW
+    fprintf( stdout, "Initialising GLEW...\n" );
     glewExperimental = GL_TRUE;
     int err = glewInit();
     if( err != GLEW_OK )
@@ -171,8 +173,8 @@ int main( int argc, char* argv[] )
 
     // Load models
     Model terrain( "models/terrain.obj" );
-    //terrain.load();
-    //terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
+    terrain.load();
+    terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
 
     Model clanger( "models/clanger.obj" );
     clanger.load();
@@ -183,9 +185,9 @@ int main( int argc, char* argv[] )
     Model clanger3 = clanger;
     clanger3.translate( glm::vec3( 3.0f, 0.0f, 0.0f ) );
 
-    //Model asteroid( "models/asteroid.obj" );
-    //asteroid.load();
-    //asteroid.translate( glm::vec3( -5.0f, 0.0f, 0.0f ) );
+    Model asteroid( "models/asteroid.obj" );
+    asteroid.load();
+    asteroid.translate( glm::vec3( 20.0f, 5.0f, 0.0f ) );
 
     // Set up uniform variables for GLSL
     glUseProgram( shader_program );
@@ -201,8 +203,9 @@ int main( int argc, char* argv[] )
     GLuint light_direction_id = glGetUniformLocation( shader_program, "light_direction" );
     glUniform3fv( light_direction_id, 1, &light_direction[ 0 ] );
 
-    glm::vec3 light_color = glm::vec3( 0.3f, 0.3f, 0.3f );
+    glm::vec3 light_color;
     GLuint light_color_id = glGetUniformLocation( shader_program, "light_color" );
+    light_color = glm::vec3( 0.3f, 0.3f, 0.3f );
     glUniform3fv( light_color_id, 1, &light_color[ 0 ] );
 
     glm::vec3 object_color = glm::vec3( 1.0f, 0.6f, 0.6f );
@@ -237,15 +240,14 @@ int main( int argc, char* argv[] )
 
         camera.move();
 
-        //std::cout << glm::to_string( glm::translate( 1.0f, 2.0f, 3.0f ) ) << std::endl;
-        //glm::mat4 asteroid_model = asteroid.getModel();
-        //asteroid.translate( glm::vec3( -asteroid_model[ 3 ][ 0 ], -asteroid_model[ 3 ][ 1 ], -asteroid_model[ 3 ][ 2 ] ) );
-        //asteroid.translate( glm::vec3( sin( 360 * ( timeDiff / 100 ) ), 0.0f, 0.0f ) );
+        asteroid.translate( glm::vec3( -20.0f, -5.0f, 0.0f ) );
+        asteroid.rotate( -timeDiff * 45, glm::vec3( 0.2f, 1.0f, 0.0f ) );
+        asteroid.translate( glm::vec3( 20.0f, 5.0f, 0.0f ) );
 
         ///////////////////////////////////////////////////////////////////////
         // RENDERING
 
-        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+        glClearColor( 1.0f, 1.0f, 1.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
         // Enable lighting
@@ -272,9 +274,9 @@ int main( int argc, char* argv[] )
         clanger3.render();
 
         // Asteroid
-        //mvp = camera.getMVP( asteroid.getModel() );
-        //glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        //asteroid.render();
+        mvp = camera.getMVP( asteroid.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        asteroid.render();
 
         glfwSwapBuffers( window );
     }

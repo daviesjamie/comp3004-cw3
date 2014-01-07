@@ -86,7 +86,7 @@ void Camera::reset()
     speed = 0.0f;
 
     // perspective( field of view, aspect ratio, near clip, far clip )
-    projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
+    projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 500.0f );
 
     // lookAt( camera position, target position, up direction )
     view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
