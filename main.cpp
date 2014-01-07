@@ -96,28 +96,28 @@ int main( int argc, char* argv[] )
     GLuint ambient_intensity_id = glGetUniformLocation( shader_program, "ambient_intensity" );
     glUniform1f( ambient_intensity_id, ambient_intensity );
 
-    glm::vec3 light_direction = glm::vec3( 0.0f, 0.0f, 10.0f );
+    glm::vec3 light_direction = glm::vec3( 10.0f, 10.0f, 10.0f );
     GLuint light_direction_id = glGetUniformLocation( shader_program, "light_direction" );
     glUniform3fv( light_direction_id, 1, &light_direction[ 0 ] );
 
-    glm::vec3 light_color = glm::vec3( 0.5f, 0.5f, 0.5f );
+    glm::vec3 light_color = glm::vec3( 0.3f, 0.3f, 0.3f );
     GLuint light_color_id = glGetUniformLocation( shader_program, "light_color" );
     glUniform3fv( light_color_id, 1, &light_color[ 0 ] );
 
-    glm::vec3 object_color = glm::vec3( 1.0f, 0.9f, 0.9f );
+    glm::vec3 object_color = glm::vec3( 1.0f, 0.6f, 0.6f );
     GLuint object_color_id = glGetUniformLocation( shader_program, "object_color" );
     glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
 
     // Set up matrices
     glm::mat4 projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
-    glm::mat4 view = glm::lookAt( glm::vec3( 10.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    glm::mat4 view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
     glm::mat4 mvp;
 
     glEnable( GL_DEPTH_TEST );
 
     while( running )
     {
-        glClearColor( 1.0f, 0.0f, 0.0f, 0.0f );
+        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
         // Enable lighting

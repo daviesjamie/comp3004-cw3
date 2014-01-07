@@ -7,17 +7,17 @@ layout( location = 1 ) in vec3 normal;
 // The (constant) MVP matrix
 uniform mat4 mvp;
 
-//uniform bool enable_shading;
-//uniform vec3 light_color;
-//uniform vec3 light_direction;
-//uniform vec3 object_color;
-//uniform float ambient_intensity;
+uniform bool enable_shading;
+uniform vec3 light_color;
+uniform vec3 light_direction;
+uniform vec3 object_color;
+uniform float ambient_intensity;
 
-const bool enable_shading = true;
-const vec3 object_color = vec3( 1.0f, 1.0f, 1.0f );
-const vec3 light_color = vec3( 0.5f, 0.5f, 0.5f );
-const vec3 light_direction = -vec3( 0.0f, 0.0f, -10.0f ); // Opposite of camera position
-const float ambient_intensity = 0.1f;
+//const bool enable_shading = true;
+//const vec3 object_color = vec3( 1.0f, 1.0f, 1.0f );
+//const vec3 light_color = vec3( 0.5f, 0.5f, 0.5f );
+//const vec3 light_direction = -vec3( 0.0f, 0.0f, -10.0f ); // Opposite of camera position
+//const float ambient_intensity = 0.1f;
 
 // The variables to pass along the chain
 out VertexData {
