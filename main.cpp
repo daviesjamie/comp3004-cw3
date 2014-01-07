@@ -205,12 +205,11 @@ int main( int argc, char* argv[] )
 
     glm::vec3 light_color;
     GLuint light_color_id = glGetUniformLocation( shader_program, "light_color" );
-    light_color = glm::vec3( 0.3f, 0.3f, 0.3f );
+    light_color = glm::vec3( 0.5f, 0.5f, 0.5f );
     glUniform3fv( light_color_id, 1, &light_color[ 0 ] );
 
-    glm::vec3 object_color = glm::vec3( 1.0f, 0.6f, 0.6f );
+    glm::vec3 object_color;
     GLuint object_color_id = glGetUniformLocation( shader_program, "object_color" );
-    glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
 
     glEnable( GL_DEPTH_TEST );
 
@@ -247,18 +246,22 @@ int main( int argc, char* argv[] )
         ///////////////////////////////////////////////////////////////////////
         // RENDERING
 
-        glClearColor( 1.0f, 1.0f, 1.0f, 0.0f );
+        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
         // Enable lighting
         glUniform1i( enable_shading_id, GL_TRUE );
 
         // Terrain
+        object_color = glm::vec3( 0.8f, 0.8f, 0.9f );
+        glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
         glm::mat4 mvp = camera.getMVP( terrain.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         terrain.render();
 
         // Clanger 1
+        object_color = glm::vec3( 1.0f, 0.6f, 0.6f );
+        glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
         mvp = camera.getMVP( clanger.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         clanger.render();
@@ -274,6 +277,8 @@ int main( int argc, char* argv[] )
         clanger3.render();
 
         // Asteroid
+        object_color = glm::vec3( 0.9f, 0.85f, 0.8f );
+        glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
         mvp = camera.getMVP( asteroid.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         asteroid.render();
