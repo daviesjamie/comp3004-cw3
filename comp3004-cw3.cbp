@@ -30,18 +30,29 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="C:/Graphics/include" />
-			<Add directory="C:/Graphics/GLFW3/include" />
+			<Add directory="H:/Graphics/include" />
+			<Add directory="H:/Graphics/GLFW3/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="C:/Graphics/lib" />
-			<Add directory="C:/Graphics/GLFW3/lib-mingw" />
+			<Add library="mingw32" />
+			<Add library="glew32" />
+			<Add library="glfw3" />
+			<Add library="opengl32" />
+			<Add library="gdi32" />
+			<Add directory="H:/Graphics/lib" />
+			<Add directory="H:/Graphics/GLFW3/lib-mingw" />
 		</Linker>
-		<Unit filename="Camera.hpp" />
 		<Unit filename="Model.cpp" />
 		<Unit filename="Model.hpp" />
-		<Unit filename="objloader.cpp" />
-		<Unit filename="objloader.hpp" />
+		<Unit filename="fragment.glsl" />
+		<Unit filename="main.cpp" />
+		<Unit filename="shader.cpp" />
+		<Unit filename="shader.hpp" />
+		<Unit filename="utils/filetobuffer.cpp" />
+		<Unit filename="utils/filetobuffer.hpp" />
+		<Unit filename="utils/objloader.cpp" />
+		<Unit filename="utils/objloader.hpp" />
+		<Unit filename="vertex.glsl" />
 		<Extensions>
 			<code_completion />
 			<envvars />
