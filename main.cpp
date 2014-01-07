@@ -4,6 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <vector>
 
+#include "Camera.hpp"
 #include "Model.hpp"
 #include "shader.hpp"
 
@@ -11,6 +12,8 @@ int screen_width = 800;
 int screen_height = 600;
 
 bool running = true;
+
+Camera camera = Camera();
 
 static void keyHandler( GLFWwindow* window, int key, int scancode, int action, int mods )
 {
@@ -116,11 +119,6 @@ int main( int argc, char* argv[] )
     GLuint object_color_id = glGetUniformLocation( shader_program, "object_color" );
     glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
 
-    // Set up matrices
-    glm::mat4 projection = glm::perspective( 45.0f, (float) screen_width / (float) screen_height, 0.1f, 100.0f );
-    glm::mat4 view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-    glm::mat4 mvp;
-
     glEnable( GL_DEPTH_TEST );
 
     while( running )
@@ -132,7 +130,7 @@ int main( int argc, char* argv[] )
         glUniform1i( enable_shading_id, GL_TRUE );
 
         // Send mvp matrix to GLSL
-        mvp = projection * view * clanger.getModel();
+        glm::mat4 mvp = camera.getMVP( clanger.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
 
         // Render clanger
