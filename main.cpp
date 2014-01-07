@@ -21,9 +21,55 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
     {
         switch( key )
         {
+            // Quit
             case GLFW_KEY_Q:
             case GLFW_KEY_ESCAPE:
                 running = false;
+                break;
+
+            // Screenshot location
+            case GLFW_KEY_P:
+                break;
+
+            // Start tour
+            case GLFW_KEY_T:
+                break;
+
+            // End tour
+            case GLFW_KEY_E:
+                break;
+
+            // Turn camera left
+            case GLFW_KEY_LEFT:
+                break;
+
+            // Turn camera right
+            case GLFW_KEY_RIGHT:
+                break;
+
+            // Raise camera
+            case GLFW_KEY_PAGE_UP:
+                break;
+
+            // Lower camera
+            case GLFW_KEY_PAGE_DOWN:
+                break;
+
+            // Speed up camera
+            case GLFW_KEY_UP:
+                break;
+
+            // Slow down camera
+            case GLFW_KEY_DOWN:
+                break;
+
+            // Stop camera
+            case GLFW_KEY_SPACE:
+                break;
+
+            // Display help
+            case GLFW_KEY_H:
+            case GLFW_KEY_SLASH:
                 break;
         }
     }
@@ -94,6 +140,9 @@ int main( int argc, char* argv[] )
     GLuint shader_program = linkShaders( shaders );
 
     // Load models
+    Model terrain( "models/terrain.obj" );
+    terrain.load();
+
     Model clanger( "models/clanger.obj" );
     clanger.load();
 
@@ -115,7 +164,7 @@ int main( int argc, char* argv[] )
     GLuint ambient_intensity_id = glGetUniformLocation( shader_program, "ambient_intensity" );
     glUniform1f( ambient_intensity_id, ambient_intensity );
 
-    glm::vec3 light_direction = glm::vec3( 10.0f, 10.0f, 10.0f );
+    glm::vec3 light_direction = glm::vec3( -10.0f, -10.0f, 10.0f );
     GLuint light_direction_id = glGetUniformLocation( shader_program, "light_direction" );
     glUniform3fv( light_direction_id, 1, &light_direction[ 0 ] );
 
@@ -137,7 +186,11 @@ int main( int argc, char* argv[] )
         // Enable lighting
         glUniform1i( enable_shading_id, GL_TRUE );
 
-        glm::mat4 mvp = camera.getMVP( clanger.getModel() );
+        glm::mat4 mvp = camera.getMVP( terrain.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        terrain.render();
+
+        mvp = camera.getMVP( clanger.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         clanger.render();
 
