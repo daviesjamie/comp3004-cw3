@@ -11,8 +11,16 @@ Camera::Camera()
 
 void Camera::adjustElevation( float amount )
 {
-    position = glm::vec3( position.x, position.y + amount, position.z );
-    view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    if( position.y + amount >= 0 )
+    {
+        position = glm::vec3( position.x, position.y + amount, position.z );
+        view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    }
+    else
+    {
+        position = glm::vec3( position.x, 0, position.z );
+        view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    }
 }
 
 void Camera::adjustSpeed( float amount )
