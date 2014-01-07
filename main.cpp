@@ -246,7 +246,7 @@ int main( int argc, char* argv[] )
     lid4.translate( glm::vec3( -27.0f, -0.6f, 12.0f ) );
 
     Model lid5 = lid1;
-    lid5.translate( glm::vec3( -15.0f, 5.0f, -30.0f ) );
+    lid5.translate( glm::vec3( -15.0f, -0.3f, -30.0f ) );
 
     lid1.translate( glm::vec3( -1.0f, -0.5f, -3.5f ) );
 

@@ -8,7 +8,13 @@ Camera::Camera()
 {
     reset();
 
-
+    tour_positions.push_back( glm::vec3( -35.948860, 1.680134, 48.638687 ) );
+    tour_positions.push_back( glm::vec3( -45.744678, 1.850140, 18.489935 ) );
+    tour_positions.push_back( glm::vec3( -31.784830, 1.320140, -17.002737 ) );
+    tour_positions.push_back( glm::vec3( 11.015842, 3.190163, -17.267237 ) );
+    tour_positions.push_back( glm::vec3( 14.440728, 2.850228, 18.811127 ) );
+    tour_positions.push_back( glm::vec3( -8.720228, 3.320233, 15.417183 ) );
+    tour_positions.push_back( glm::vec3( -9.623946, 1.860252, 1.451834 ) );
 }
 
 void Camera::adjustElevation( float amount )
@@ -100,4 +106,9 @@ void Camera::reset()
 
     // lookAt( camera position, target position, up direction )
     view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+}
+
+void Camera::tour()
+{
+
 }

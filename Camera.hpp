@@ -39,6 +39,8 @@ class Camera
         void status();
 
         void reset();
+
+        void tour();
 };
 
 #endif // CAMERA_HPP_INCLUDED
