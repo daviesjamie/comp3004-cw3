@@ -196,7 +196,7 @@ int main( int argc, char* argv[] )
     GLuint shader_program = linkShaders( shaders );
 
     // Load models
-    Model terrain( "models/terrain.obj" );
+    Model terrain( "models/terrain2.obj" );
     terrain.load();
     terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
 
@@ -215,9 +215,19 @@ int main( int argc, char* argv[] )
 
     Model hole1( "models/hole.obj" );
     hole1.load();
+    hole1.scale( glm::vec3( 1.5f, 1.5f, 1.5f ) );
 
     Model hole2 = hole1;
-    hole2.translate( glm::vec3( -3.0f, 0.0f, 6.0f ) );
+    hole2.translate( glm::vec3( -3.0f, -0.5f, 6.0f ) );
+
+    hole1.translate( glm::vec3( 0.0f, -0.3f, 0.0f ) );
+    Model lid1( "models/dustbinlid.obj" );
+    lid1.load();
+
+    Model lid2 = lid1;
+    lid2.translate( glm::vec3( -3.0f, -0.5f, 6.0f ) );
+
+    lid1.translate( glm::vec3( -1.0f, -0.5f, -3.5f ) );
 
     // Set up uniform variables for GLSL
     glUseProgram( shader_program );
@@ -324,6 +334,16 @@ int main( int argc, char* argv[] )
         mvp = camera.getMVP( hole2.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         hole2.render();
+
+        // Lid 1
+        mvp = camera.getMVP( lid1.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        lid1.render();
+
+        // Lid 2
+        mvp = camera.getMVP( lid2.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        lid2.render();
 
         glfwSwapBuffers( window );
     }
