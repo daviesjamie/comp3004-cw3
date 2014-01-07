@@ -768,7 +768,7 @@
 	<string>
 	<vector>
 
-1389123260 source:h:\code\comp3004-cw3\camera.cpp
+1389128364 source:h:\code\comp3004-cw3\camera.cpp
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/rotate_vector.hpp>
@@ -784,7 +784,7 @@
 1389109301 h:\code\comp3004-cw3\camera.hpp
 	<glm/glm.hpp>
 
-1389128054 source:h:\code\comp3004-cw3\main.cpp
+1389131422 source:h:\code\comp3004-cw3\main.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glm/glm.hpp>

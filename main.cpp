@@ -209,6 +209,9 @@ int main( int argc, char* argv[] )
     Model clanger3 = clanger1;
     clanger3.translate( glm::vec3( 3.0f, 0.0f, 0.0f ) );
 
+    Model clanger4 = clanger1;
+    clanger4.translate( glm::vec3( -33.1f, -5.0f, 37.6f ) );
+
     Model asteroid( "models/asteroid.obj" );
     asteroid.load();
     asteroid.translate( glm::vec3( 20.0f, 5.0f, 0.0f ) );
@@ -220,12 +223,25 @@ int main( int argc, char* argv[] )
     Model hole2 = hole1;
     hole2.translate( glm::vec3( -3.0f, -0.5f, 6.0f ) );
 
+    Model hole3 = hole1;
+    hole3.translate( glm::vec3( -22.0f, -0.5f, 25.0f ) );
+
     hole1.translate( glm::vec3( 0.0f, -0.3f, 0.0f ) );
+
     Model lid1( "models/dustbinlid.obj" );
     lid1.load();
 
     Model lid2 = lid1;
-    lid2.translate( glm::vec3( -3.0f, -0.5f, 6.0f ) );
+    lid2.translate( glm::vec3( -4.5f, 0.3f, 9.0f ) );
+
+    Model lid3 = lid1;
+    lid3.translate( glm::vec3( -15.0f, 0.0f, 19.0f ) );
+
+    Model lid4 = lid1;
+    lid4.translate( glm::vec3( -27.0f, -0.6f, 12.0f ) );
+
+    Model lid5 = lid1;
+    lid5.translate( glm::vec3( -15.0f, 5.0f, -30.0f ) );
 
     lid1.translate( glm::vec3( -1.0f, -0.5f, -3.5f ) );
 
@@ -258,6 +274,9 @@ int main( int argc, char* argv[] )
     float lastTime = 0;
     float timeDiff = 0;
 
+    float clanger_position = -5.0f;
+    bool clanger_going_up = true;
+
     while( running )
     {
         // Calculate time difference between this frame and the last
@@ -280,8 +299,31 @@ int main( int argc, char* argv[] )
         camera.move();
 
         asteroid.translate( glm::vec3( -20.0f, -5.0f, 0.0f ) );
-        asteroid.rotate( -timeDiff * 45, glm::vec3( 0.2f, 1.0f, 0.0f ) );
+        asteroid.rotate( -timeDiff * 20, glm::vec3( 0.2f, 1.0f, 0.0f ) );
         asteroid.translate( glm::vec3( 20.0f, 5.0f, 0.0f ) );
+
+        if( clanger_going_up )
+        {
+            clanger_position += timeDiff * 2;
+            clanger4.translate( glm::vec3( 0.0f, timeDiff * 2, 0.0f ) );
+
+            if( clanger_position >= 0.5f )
+            {
+                clanger_going_up = false;
+                clanger_position = 0.5f;
+            }
+        }
+        else
+        {
+            clanger_position -= timeDiff * 2;
+            clanger4.translate( glm::vec3( 0.0f, -timeDiff * 2, 0.0f ) );
+
+            if( clanger_position <= -5.0f )
+            {
+                clanger_going_up = true;
+                clanger_position = -5.0f;
+            }
+        }
 
         ///////////////////////////////////////////////////////////////////////
         // RENDERING
@@ -316,6 +358,11 @@ int main( int argc, char* argv[] )
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         clanger3.render();
 
+        // Clanger 4
+        mvp = camera.getMVP( clanger4.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        clanger4.render();
+
         // Asteroid
         object_color = glm::vec3( 0.9f, 0.85f, 0.8f );
         glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
@@ -335,6 +382,11 @@ int main( int argc, char* argv[] )
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         hole2.render();
 
+        // Hole 3
+        mvp = camera.getMVP( hole3.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        hole3.render();
+
         // Lid 1
         mvp = camera.getMVP( lid1.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
@@ -344,6 +396,21 @@ int main( int argc, char* argv[] )
         mvp = camera.getMVP( lid2.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         lid2.render();
+
+        // Lid 3
+        mvp = camera.getMVP( lid3.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        lid3.render();
+
+        // Lid 4
+        mvp = camera.getMVP( lid4.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        lid4.render();
+
+        // Lid 5
+        mvp = camera.getMVP( lid5.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        lid5.render();
 
         glfwSwapBuffers( window );
     }
