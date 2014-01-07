@@ -97,6 +97,14 @@ int main( int argc, char* argv[] )
     Model clanger( "models/clanger.obj" );
     clanger.load();
 
+    Model clanger2( "models/clanger.obj" );
+    clanger2.load();
+    clanger2.translate( glm::vec3( -3.0f, 0.0f, 0.0f ) );
+
+    Model clanger3( "models/clanger.obj" );
+    clanger3.load();
+    clanger3.translate( glm::vec3( 3.0f, 0.0f, 0.0f ) );
+
     // Set up uniform variables for GLSL
     glUseProgram( shader_program );
 
@@ -129,12 +137,17 @@ int main( int argc, char* argv[] )
         // Enable lighting
         glUniform1i( enable_shading_id, GL_TRUE );
 
-        // Send mvp matrix to GLSL
         glm::mat4 mvp = camera.getMVP( clanger.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-
-        // Render clanger
         clanger.render();
+
+        mvp = camera.getMVP( clanger2.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        clanger2.render();
+
+        mvp = camera.getMVP( clanger3.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        clanger3.render();
 
         glfwSwapBuffers( window );
         glfwPollEvents();
