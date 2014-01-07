@@ -42,16 +42,22 @@
 			<Add directory="H:/Graphics/lib" />
 			<Add directory="H:/Graphics/GLFW3/lib-mingw" />
 		</Linker>
+		<Unit filename="Camera.cpp" />
+		<Unit filename="Camera.hpp" />
 		<Unit filename="Model.cpp" />
 		<Unit filename="Model.hpp" />
+		<Unit filename="credits.txt">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="filetobuffer.cpp" />
+		<Unit filename="filetobuffer.hpp" />
 		<Unit filename="fragment.glsl" />
 		<Unit filename="main.cpp" />
+		<Unit filename="objloader.cpp" />
+		<Unit filename="objloader.hpp" />
+		<Unit filename="readme.txt" />
 		<Unit filename="shader.cpp" />
 		<Unit filename="shader.hpp" />
-		<Unit filename="utils/filetobuffer.cpp" />
-		<Unit filename="utils/filetobuffer.hpp" />
-		<Unit filename="utils/objloader.cpp" />
-		<Unit filename="utils/objloader.hpp" />
 		<Unit filename="vertex.glsl" />
 		<Extensions>
 			<code_completion />
