@@ -372,12 +372,12 @@
 	<string>
 	"objloader.hpp"
 
-1389121280 source:h:\code\comp3004-cw3\shader.cpp
+1389136441 source:h:\code\comp3004-cw3\shader.cpp
 	<cstdio>
 	<cstdlib>
 	<GL/glew.h>
 	<vector>
-	"utils/filetobuffer.hpp"
+	"filetobuffer.hpp"
 	"shader.hpp"
 
 1389087438 h:\code\comp3004-cw3\utils\filetobuffer.hpp
@@ -405,7 +405,7 @@
 	<glm/glm.hpp>
 	<vector>
 
-1389120545 source:h:\code\comp3004-cw3\model.cpp
+1389136435 source:h:\code\comp3004-cw3\model.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glimg/glimg.h>
@@ -416,7 +416,7 @@
 	<memory>
 	<stdio.h>
 	"Model.hpp"
-	"utils/objloader.hpp"
+	"objloader.hpp"
 
 1344265147 h:\graphics\include\gl\glew.h
 	<stddef.h>
@@ -768,10 +768,11 @@
 	<string>
 	<vector>
 
-1389135363 source:h:\code\comp3004-cw3\camera.cpp
+1389136192 source:h:\code\comp3004-cw3\camera.cpp
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/rotate_vector.hpp>
+	<iostream>
 	"Camera.hpp"
 
 1376337655 h:\graphics\include\glm\gtx\rotate_vector.hpp
@@ -785,7 +786,7 @@
 	<glm/glm.hpp>
 	<vector>
 
-1389136052 source:h:\code\comp3004-cw3\main.cpp
+1389136475 source:h:\code\comp3004-cw3\main.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glm/glm.hpp>
@@ -797,4 +798,10 @@
 	"Camera.hpp"
 	"Model.hpp"
 	"shader.hpp"
+
+1389090265 h:\code\comp3004-cw3\objloader.hpp
+	<glm/glm.hpp>
+	<vector>
+
+1389087438 h:\code\comp3004-cw3\filetobuffer.hpp
 

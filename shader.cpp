@@ -6,7 +6,7 @@
 #include <GL/glew.h>
 #include <vector>
 
-#include "utils/filetobuffer.hpp"
+#include "filetobuffer.hpp"
 #include "shader.hpp"
 
 void printLog( GLuint object )

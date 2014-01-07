@@ -215,11 +215,11 @@ int main( int argc, char* argv[] )
     GLuint shader_program = linkShaders( shaders );
 
     // Load models
-    Model terrain( "models/terrain2.obj" );
+    Model terrain( "terrain2.obj" );
     terrain.load();
     terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
 
-    Model clanger1( "models/clanger.obj" );
+    Model clanger1( "clanger.obj" );
     clanger1.load();
 
     Model clanger2 = clanger1;
@@ -231,11 +231,11 @@ int main( int argc, char* argv[] )
     Model clanger4 = clanger1;
     clanger4.translate( glm::vec3( -33.1f, -5.0f, 37.6f ) );
 
-    Model asteroid( "models/asteroid.obj" );
+    Model asteroid( "asteroid.obj" );
     asteroid.load();
     asteroid.translate( glm::vec3( 20.0f, 5.0f, 0.0f ) );
 
-    Model hole1( "models/hole.obj" );
+    Model hole1( "hole.obj" );
     hole1.load();
     hole1.scale( glm::vec3( 1.5f, 1.5f, 1.5f ) );
 
@@ -247,7 +247,7 @@ int main( int argc, char* argv[] )
 
     hole1.translate( glm::vec3( 0.0f, -0.3f, 0.0f ) );
 
-    Model lid1( "models/dustbinlid.obj" );
+    Model lid1( "dustbinlid.obj" );
     lid1.load();
 
     Model lid2 = lid1;

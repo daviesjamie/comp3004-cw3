@@ -9,7 +9,7 @@
 #include <stdio.h>
 
 #include "Model.hpp"
-#include "utils/objloader.hpp"
+#include "objloader.hpp"
 
 Model::Model( string file )
 {
