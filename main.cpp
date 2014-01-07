@@ -7,8 +7,8 @@
 #include "Model.hpp"
 #include "shader.hpp"
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+int screen_width = 800;
+int screen_height = 600;
 
 bool running = true;
 
@@ -24,6 +24,13 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
                 break;
         }
     }
+}
+
+static void resizeHandler( GLFWwindow* window, int width, int height )
+{
+    screen_width = width;
+    screen_height = height;
+    glViewport( 0, 0, width, height );
 }
 
 GLint linkShaders( const std::vector<GLint> &shaders )
@@ -47,7 +54,7 @@ int main( int argc, char* argv[] )
     }
 
     // Create a window and OpenGL context
-    GLFWwindow* window = glfwCreateWindow( SCREEN_WIDTH, SCREEN_HEIGHT, "COMP3004 CW 3 -- Jamie Davies (jagd1g11)", NULL, NULL );
+    GLFWwindow* window = glfwCreateWindow( screen_width, screen_height, "COMP3004 CW 3 -- Jamie Davies (jagd1g11)", NULL, NULL );
     if( !window )
     {
         fprintf( stderr, "Failed to create a window\n" );
@@ -69,8 +76,9 @@ int main( int argc, char* argv[] )
         exit( EXIT_FAILURE );
     }
 
-    // Set key callback function
+    // Set key/resize callback functions
     glfwSetKeyCallback( window, keyHandler );
+    glfwSetWindowSizeCallback( window, resizeHandler );
 
     // Load the shaders
     GLuint vertex_shader = createShader( "vertex.glsl", GL_VERTEX_SHADER );
@@ -109,7 +117,7 @@ int main( int argc, char* argv[] )
     glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
 
     // Set up matrices
-    glm::mat4 projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
+    glm::mat4 projection = glm::perspective( 45.0f, (float) screen_width / (float) screen_height, 0.1f, 100.0f );
     glm::mat4 view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
     glm::mat4 mvp;
 
