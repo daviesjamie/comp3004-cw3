@@ -3,6 +3,8 @@
 #include <glimg/glimg.h>
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>
+#include <glm/gtx/string_cast.hpp>
+#include <iostream>
 #include <memory>
 #include <stdio.h>
 
@@ -18,7 +20,7 @@ void Model::load()
 {
     loadObj( model_path, vertices, normals );
 
-    glGenBuffers( 3, vbo );
+    glGenBuffers( 2, vbo );
     glGenVertexArrays( 1, vao );
 
     glBindBuffer( GL_ARRAY_BUFFER, vbo[ 0 ] );
@@ -27,10 +29,10 @@ void Model::load()
     glEnableVertexAttribArray( 0 );
     glVertexAttribPointer( 0, 3, GL_FLOAT, GL_FALSE, sizeof( glm::vec3 ), (const GLvoid*) 0 );
 
-    glBindBuffer( GL_ARRAY_BUFFER, vbo[ 2 ] );
+    glBindBuffer( GL_ARRAY_BUFFER, vbo[ 1 ] );
     glBufferData( GL_ARRAY_BUFFER, normals.size() * sizeof( glm::vec3 ), &normals[ 0 ], GL_STATIC_DRAW );
-    glEnableVertexAttribArray( 2 );
-    glVertexAttribPointer( 2, 3, GL_FLOAT, GL_FALSE, sizeof( glm::vec3 ), (const GLvoid*) 0 );
+    glVertexAttribPointer( 1, 3, GL_FLOAT, GL_FALSE, sizeof( glm::vec3 ), (const GLvoid*) 0 );
+    glEnableVertexAttribArray( 1 );
 }
 
 void Model::rotate( float amount, glm::vec3 axes )

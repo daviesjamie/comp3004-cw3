@@ -89,23 +89,28 @@ int main( int argc, char* argv[] )
     // Set up uniform variables for GLSL
     glUseProgram( shader_program );
 
-    GLuint mvpID = glGetUniformLocation( shader_program, "mvp" );
+    GLuint mvp_id = glGetUniformLocation( shader_program, "mvp" );
+    GLuint enable_shading_id = glGetUniformLocation( shader_program, "enable_shading" );
 
-    glm::vec4 light_position = glm::vec4( 0.2f, 0.3f, 1.0f, 0.0f );
-    GLuint light_positionID = glGetUniformLocation( shader_program, "light_position" );
-    glUniform4fv( light_positionID, 1, &light_position[ 0 ] );
+    float ambient_intensity = 0.2f;
+    GLuint ambient_intensity_id = glGetUniformLocation( shader_program, "ambient_intensity" );
+    glUniform1f( ambient_intensity_id, ambient_intensity );
 
-    glm::vec4 light_color = glm::vec4( 0.5f, 0.5f, 0.5f, 0.5f );
-    GLuint light_colorID = glGetUniformLocation( shader_program, "light_color" );
-    glUniform4fv( light_colorID, 1, &light_color[ 0 ] );
+    glm::vec3 light_direction = glm::vec3( 0.0f, 0.0f, 10.0f );
+    GLuint light_direction_id = glGetUniformLocation( shader_program, "light_direction" );
+    glUniform3fv( light_direction_id, 1, &light_direction[ 0 ] );
 
-    glm::vec4 object_color = glm::vec4( 0.1f, 0.0f, 0.0f, 1.0f );
-    GLuint object_colorID = glGetUniformLocation( shader_program, "object_color" );
-    glUniform4fv( object_colorID, 1, &object_color[ 0 ] );
+    glm::vec3 light_color = glm::vec3( 0.5f, 0.5f, 0.5f );
+    GLuint light_color_id = glGetUniformLocation( shader_program, "light_color" );
+    glUniform3fv( light_color_id, 1, &light_color[ 0 ] );
+
+    glm::vec3 object_color = glm::vec3( 1.0f, 0.9f, 0.9f );
+    GLuint object_color_id = glGetUniformLocation( shader_program, "object_color" );
+    glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
 
     // Set up matrices
     glm::mat4 projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
-    glm::mat4 view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    glm::mat4 view = glm::lookAt( glm::vec3( 10.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
     glm::mat4 mvp;
 
     glEnable( GL_DEPTH_TEST );
@@ -115,9 +120,12 @@ int main( int argc, char* argv[] )
         glClearColor( 1.0f, 0.0f, 0.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+        // Enable lighting
+        glUniform1i( enable_shading_id, GL_TRUE );
+
         // Send mvp matrix to GLSL
         mvp = projection * view * clanger.getModel();
-        glUniformMatrix4fv( mvpID, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
 
         // Render clanger
         clanger.render();

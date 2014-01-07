@@ -1,19 +1,16 @@
 #version 330 core
 
-// Based upon the 'Normal Interpolated Shading' from:
-// https://secure.ecs.soton.ac.uk/notes/comp3004/Shading.Object.php
+// Input data
+in VertexData {
+    vec3 color;
+    vec4 normal;
+} VertexIn;
 
-precision highp float;
-
-in vec4 ex_normal;
-
-out vec4 gl_FragColor;
-
-uniform vec4 light_position;
-uniform vec4 light_color;
-uniform vec4 object_color;
+// Output data
+out vec3 color;
 
 void main()
 {
-    gl_FragColor = object_color * light_color * dot( light_position, ex_normal );
+    // Output color of the fragment
+    color = VertexIn.color;
 }

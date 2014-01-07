@@ -11,7 +11,7 @@ class Model
 {
     private:
         GLuint vao[ 1 ];
-        GLuint vbo[ 3 ];
+        GLuint vbo[ 2 ];
         string model_path;
 
         vector<glm::vec3> vertices;
