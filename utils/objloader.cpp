@@ -3,6 +3,7 @@
 #include <fstream>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
 #include <sstream>
 #include <stdio.h>
 #include <string>
@@ -62,6 +63,8 @@ bool loadObj( string path, vector<glm::vec3> &vertices, vector<glm::vec3> &norma
 
         // Stores the parts of a face index when splitting
         vector<string> faceparts;
+
+        std::cout << "Loading " << path << "..." << std::endl;
 
         while( file.good() )
         {

@@ -174,12 +174,10 @@ int main( int argc, char* argv[] )
     Model clanger( "models/clanger.obj" );
     clanger.load();
 
-    Model clanger2( "models/clanger.obj" );
-    clanger2.load();
+    Model clanger2 = clanger;
     clanger2.translate( glm::vec3( -3.0f, 0.0f, 0.0f ) );
 
-    Model clanger3( "models/clanger.obj" );
-    clanger3.load();
+    Model clanger3 = clanger;
     clanger3.translate( glm::vec3( 3.0f, 0.0f, 0.0f ) );
 
     // Set up uniform variables for GLSL

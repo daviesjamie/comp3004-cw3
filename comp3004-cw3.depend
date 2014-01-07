@@ -389,12 +389,13 @@
 	<cstdio>
 	<cstdlib>
 
-1389087993 source:h:\code\comp3004-cw3\utils\objloader.cpp
+1389113712 source:h:\code\comp3004-cw3\utils\objloader.cpp
 	<cstdio>
 	<cstdlib>
 	<fstream>
 	<GL/glew.h>
 	<GLFW/glfw3.h>
+	<iostream>
 	<sstream>
 	<stdio.h>
 	<string>
@@ -783,7 +784,7 @@
 1389109301 h:\code\comp3004-cw3\camera.hpp
 	<glm/glm.hpp>
 
-1389110187 source:h:\code\comp3004-cw3\main.cpp
+1389113422 source:h:\code\comp3004-cw3\main.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glm/glm.hpp>
