@@ -41,30 +41,37 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
 
             // Turn camera left
             case GLFW_KEY_LEFT:
+                camera.turn( 2 );
                 break;
 
             // Turn camera right
             case GLFW_KEY_RIGHT:
+                camera.turn( -2 );
                 break;
 
             // Raise camera
             case GLFW_KEY_PAGE_UP:
+                camera.adjustElevation( 1 );
                 break;
 
             // Lower camera
             case GLFW_KEY_PAGE_DOWN:
+                camera.adjustElevation( -1 );
                 break;
 
             // Speed up camera
             case GLFW_KEY_UP:
+                camera.adjustSpeed( 0.01 );
                 break;
 
             // Slow down camera
             case GLFW_KEY_DOWN:
+                camera.adjustSpeed( -0.01 );
                 break;
 
             // Stop camera
             case GLFW_KEY_SPACE:
+                camera.stop();
                 break;
 
             // Display help
@@ -140,9 +147,6 @@ int main( int argc, char* argv[] )
     GLuint shader_program = linkShaders( shaders );
 
     // Load models
-    Model terrain( "models/terrain.obj" );
-    terrain.load();
-
     Model clanger( "models/clanger.obj" );
     clanger.load();
 
@@ -183,14 +187,12 @@ int main( int argc, char* argv[] )
         glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 
+        camera.move();
+
         // Enable lighting
         glUniform1i( enable_shading_id, GL_TRUE );
 
-        glm::mat4 mvp = camera.getMVP( terrain.getModel() );
-        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        terrain.render();
-
-        mvp = camera.getMVP( clanger.getModel() );
+        glm::mat4 mvp = camera.getMVP( clanger.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         clanger.render();
 
