@@ -18,6 +18,29 @@ bool running = true;
 
 Camera camera = Camera();
 
+const char* HELP_TEXT =
+"COMP3004 Coursework 3, by Jamie Davies (jagd1g11)\n\n"
+"|-----------|---------------------------------------------------|\n"
+"| Key       | Action                                            |\n"
+"|-----------|---------------------------------------------------|\n"
+"| Q, ESC    | Quit the program                                  |\n"
+"| P         | Move camera to location screenshot was taken from |\n"
+"| T         | Start the tour                                    |\n"
+"| E         | End the tour                                      |\n"
+"| LEFT      | Turn camera left                                  |\n"
+"| RIGHT     | Turn camera right                                 |\n"
+"| W         | Tilt camera up                                    |\n"
+"| S         | Tilt camera down                                  |\n"
+"| PAGE UP   | Raise camera                                      |\n"
+"| PAGE DOWN | Lower camera                                      |\n"
+"| UP        | Speed up camera                                   |\n"
+"| DOWN      | Slow down camera                                  |\n"
+"| SPACE     | Stop camera                                       |\n"
+"| BACKSPACE | Reset camera position                             |\n"
+"| .         | Print camera position to console                  |\n"
+"| H, ?      | Print this help message                           |\n"
+"|-----------|---------------------------------------------------|\n";
+
 static void keyHandler( GLFWwindow* window, int key, int scancode, int action, int mods )
 {
     if( action == GLFW_PRESS )
@@ -100,6 +123,7 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
             // Display help on console
             case GLFW_KEY_H:
             case GLFW_KEY_SLASH:
+                std::cout << HELP_TEXT << std::endl;
                 break;
         }
     }
@@ -176,18 +200,24 @@ int main( int argc, char* argv[] )
     terrain.load();
     terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
 
-    Model clanger( "models/clanger.obj" );
-    clanger.load();
+    Model clanger1( "models/clanger.obj" );
+    clanger1.load();
 
-    Model clanger2 = clanger;
+    Model clanger2 = clanger1;
     clanger2.translate( glm::vec3( -3.0f, 0.0f, 0.0f ) );
 
-    Model clanger3 = clanger;
+    Model clanger3 = clanger1;
     clanger3.translate( glm::vec3( 3.0f, 0.0f, 0.0f ) );
 
     Model asteroid( "models/asteroid.obj" );
     asteroid.load();
     asteroid.translate( glm::vec3( 20.0f, 5.0f, 0.0f ) );
+
+    Model hole1( "models/hole.obj" );
+    hole1.load();
+
+    Model hole2 = hole1;
+    hole2.translate( glm::vec3( -3.0f, 0.0f, 6.0f ) );
 
     // Set up uniform variables for GLSL
     glUseProgram( shader_program );
@@ -262,9 +292,9 @@ int main( int argc, char* argv[] )
         // Clanger 1
         object_color = glm::vec3( 1.0f, 0.6f, 0.6f );
         glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
-        mvp = camera.getMVP( clanger.getModel() );
+        mvp = camera.getMVP( clanger1.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        clanger.render();
+        clanger1.render();
 
         // Clanger 2
         mvp = camera.getMVP( clanger2.getModel() );
@@ -282,6 +312,18 @@ int main( int argc, char* argv[] )
         mvp = camera.getMVP( asteroid.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         asteroid.render();
+
+        // Hole 1
+        object_color = glm::vec3( 0.6f, 0.6f, 0.6f );
+        glUniform3fv( object_color_id, 1, &object_color[ 0 ] );
+        mvp = camera.getMVP( hole1.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        hole1.render();
+
+        // Hole 2
+        mvp = camera.getMVP( hole2.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        hole2.render();
 
         glfwSwapBuffers( window );
     }
