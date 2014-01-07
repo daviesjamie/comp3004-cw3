@@ -6,15 +6,7 @@
 
 Camera::Camera()
 {
-    position = glm::vec3( 0.0f, 0.0f, 10.0f );
-    direction = glm::vec3( 0.0f, 0.0f, -1.0f );
-    speed = 0.0f;
-
-    // perspective( field of view, aspect ratio, near clip, far clip )
-    projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
-
-    // lookAt( camera position, target position, up direction )
-    view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    reset();
 }
 
 void Camera::adjustElevation( float amount )
@@ -44,7 +36,13 @@ void Camera::stop()
     speed = 0.0f;
 }
 
-void Camera::turn( float angle )
+void Camera::pitch( float angle )
+{
+    direction = glm::rotateX( direction, angle );
+    view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
+}
+
+void Camera::yaw( float angle )
 {
     direction = glm::rotateY( direction, angle );
     view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
@@ -79,4 +77,17 @@ void Camera::status()
 {
     fprintf( stdout, "Position: ( %f, %f, %f )\n", position.x, position.y, position.z );
     fprintf( stdout, "Looking at: ( %f, %f, %f )\n", direction.x, direction.y, direction.z );
+}
+
+void Camera::reset()
+{
+    position = glm::vec3( 0.0f, 2.0f, 10.0f );
+    direction = glm::vec3( 0.0f, 1.0f, -10.0f );
+    speed = 0.0f;
+
+    // perspective( field of view, aspect ratio, near clip, far clip )
+    projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
+
+    // lookAt( camera position, target position, up direction )
+    view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
 }

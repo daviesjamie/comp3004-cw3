@@ -17,10 +17,13 @@ class Camera
         Camera();
 
         void adjustElevation( float amount );
+
         void adjustSpeed( float amount );
         void move();
         void stop();
-        void turn( float angle );
+
+        void pitch( float angle );
+        void yaw( float angle );
 
         glm::vec3 getPosition();
         void setPosition( glm::vec3 pos );
@@ -31,6 +34,8 @@ class Camera
         glm::mat4 getMVP( glm::mat4 model );
 
         void status();
+
+        void reset();
 };
 
 #endif // CAMERA_HPP_INCLUDED

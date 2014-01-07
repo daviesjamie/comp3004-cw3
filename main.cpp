@@ -41,22 +41,32 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
 
             // Turn camera left
             case GLFW_KEY_LEFT:
-                camera.turn( 2 );
+                camera.yaw( 2 );
                 break;
 
             // Turn camera right
             case GLFW_KEY_RIGHT:
-                camera.turn( -2 );
+                camera.yaw( -2 );
+                break;
+
+            // Tilt camera up
+            case GLFW_KEY_W:
+                camera.pitch( 2 );
+                break;
+
+            // Tilt camera down
+            case GLFW_KEY_S:
+                camera.pitch( -2 );
                 break;
 
             // Raise camera
             case GLFW_KEY_PAGE_UP:
-                camera.adjustElevation( 1 );
+                camera.adjustElevation( 0.5 );
                 break;
 
             // Lower camera
             case GLFW_KEY_PAGE_DOWN:
-                camera.adjustElevation( -1 );
+                camera.adjustElevation( -0.5 );
                 break;
 
             // Speed up camera
@@ -72,6 +82,11 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
             // Stop camera
             case GLFW_KEY_SPACE:
                 camera.stop();
+                break;
+
+            // Reset camera
+            case GLFW_KEY_BACKSPACE:
+                camera.reset();
                 break;
 
             // Display help
