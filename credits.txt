@@ -1,0 +1,3 @@
+Height map used to generate terrain, courtesy of NASA:
+http://www.nasa.gov/mission_pages/LRO/news/apollo-11.html#.UswlVrR69Ao
+

@@ -162,6 +162,10 @@ int main( int argc, char* argv[] )
     GLuint shader_program = linkShaders( shaders );
 
     // Load models
+    Model terrain( "models/terrain.obj" );
+    terrain.load();
+    terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
+
     Model clanger( "models/clanger.obj" );
     clanger.load();
 
@@ -207,7 +211,11 @@ int main( int argc, char* argv[] )
         // Enable lighting
         glUniform1i( enable_shading_id, GL_TRUE );
 
-        glm::mat4 mvp = camera.getMVP( clanger.getModel() );
+        glm::mat4 mvp = camera.getMVP( terrain.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        terrain.render();
+
+        mvp = camera.getMVP( clanger.getModel() );
         glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
         clanger.render();
 
