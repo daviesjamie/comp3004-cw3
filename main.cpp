@@ -1,8 +1,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <vector>
 
+#include "Model.hpp"
 #include "shader.hpp"
 
 const int SCREEN_WIDTH = 640;
@@ -80,12 +82,45 @@ int main( int argc, char* argv[] )
     shaders.push_back( fragment_shader );
     GLuint shader_program = linkShaders( shaders );
 
+    // Load models
+    Model clanger( "models/clanger.obj" );
+    clanger.load();
+
+    // Set up uniform variables for GLSL
+    glUseProgram( shader_program );
+
+    GLuint mvpID = glGetUniformLocation( shader_program, "mvp" );
+
+    glm::vec4 light_position = glm::vec4( 0.2f, 0.3f, 1.0f, 0.0f );
+    GLuint light_positionID = glGetUniformLocation( shader_program, "light_position" );
+    glUniform4fv( light_positionID, 1, &light_position[ 0 ] );
+
+    glm::vec4 light_color = glm::vec4( 0.5f, 0.5f, 0.5f, 0.5f );
+    GLuint light_colorID = glGetUniformLocation( shader_program, "light_color" );
+    glUniform4fv( light_colorID, 1, &light_color[ 0 ] );
+
+    glm::vec4 object_color = glm::vec4( 0.1f, 0.0f, 0.0f, 1.0f );
+    GLuint object_colorID = glGetUniformLocation( shader_program, "object_color" );
+    glUniform4fv( object_colorID, 1, &object_color[ 0 ] );
+
+    // Set up matrices
+    glm::mat4 projection = glm::perspective( 45.0f, 4.0f / 3.0f, 0.1f, 100.0f );
+    glm::mat4 view = glm::lookAt( glm::vec3( 0.0f, 0.0f, 10.0f ), glm::vec3( 0.0f, 0.0f, 0.0f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+    glm::mat4 mvp;
+
     glEnable( GL_DEPTH_TEST );
 
     while( running )
     {
         glClearColor( 1.0f, 0.0f, 0.0f, 0.0f );
         glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+        // Send mvp matrix to GLSL
+        mvp = projection * view * clanger.getModel();
+        glUniformMatrix4fv( mvpID, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+
+        // Render clanger
+        clanger.render();
 
         glfwSwapBuffers( window );
         glfwPollEvents();
