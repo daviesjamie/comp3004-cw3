@@ -18,17 +18,17 @@ void Camera::adjustElevation( float amount )
 void Camera::adjustSpeed( float amount )
 {
     speed += amount;
-    if( speed < 0.0f )
-        speed = 0.0f;
+    //if( speed < 0.0f )
+    //   speed = 0.0f;
 }
 
 void Camera::move()
 {
-    if( speed > 0.0f )
-    {
+    //if( speed > 0.0f )
+    //{
         position = position + glm::vec3( direction.x * speed, direction.y * speed, direction.z * speed );
         view = glm::lookAt( position, position + direction, glm::vec3( 0.0f, 1.0f, 0.0f ) );
-    }
+    //}
 }
 
 void Camera::stop()

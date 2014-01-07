@@ -14,6 +14,7 @@
 Model::Model( string file )
 {
     model_path = file;
+    model = glm::mat4( 1.0f );
 }
 
 void Model::load()

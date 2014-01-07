@@ -405,7 +405,7 @@
 	<glm/glm.hpp>
 	<vector>
 
-1389104312 source:h:\code\comp3004-cw3\model.cpp
+1389118948 source:h:\code\comp3004-cw3\model.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glimg/glimg.h>
@@ -768,7 +768,7 @@
 	<string>
 	<vector>
 
-1389109388 source:h:\code\comp3004-cw3\camera.cpp
+1389117348 source:h:\code\comp3004-cw3\camera.cpp
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
 	<glm/gtx/rotate_vector.hpp>
@@ -784,11 +784,12 @@
 1389109301 h:\code\comp3004-cw3\camera.hpp
 	<glm/glm.hpp>
 
-1389113422 source:h:\code\comp3004-cw3\main.cpp
+1389117794 source:h:\code\comp3004-cw3\main.cpp
 	<GL/glew.h>
 	<GLFW/glfw3.h>
 	<glm/glm.hpp>
 	<glm/gtc/matrix_transform.hpp>
+	<iostream>
 	<vector>
 	"Camera.hpp"
 	"Model.hpp"

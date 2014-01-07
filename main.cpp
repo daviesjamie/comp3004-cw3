@@ -2,6 +2,9 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/transform.hpp>
+#include <glm/gtx/string_cast.hpp>
+#include <iostream>
 #include <vector>
 
 #include "Camera.hpp"
@@ -168,8 +171,8 @@ int main( int argc, char* argv[] )
 
     // Load models
     Model terrain( "models/terrain.obj" );
-    terrain.load();
-    terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
+    //terrain.load();
+    //terrain.scale( glm::vec3( 100.0f, 100.0f, 100.0f ) );
 
     Model clanger( "models/clanger.obj" );
     clanger.load();
@@ -179,6 +182,10 @@ int main( int argc, char* argv[] )
 
     Model clanger3 = clanger;
     clanger3.translate( glm::vec3( 3.0f, 0.0f, 0.0f ) );
+
+    //Model asteroid( "models/asteroid.obj" );
+    //asteroid.load();
+    //asteroid.translate( glm::vec3( -5.0f, 0.0f, 0.0f ) );
 
     // Set up uniform variables for GLSL
     glUseProgram( shader_program );
@@ -204,38 +211,72 @@ int main( int argc, char* argv[] )
 
     glEnable( GL_DEPTH_TEST );
 
+    // Loop variables
+    float currentTime = 0;
+    float lastTime = 0;
+    float timeDiff = 0;
+
     while( running )
     {
-        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
-        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+        // Calculate time difference between this frame and the last
+        currentTime = glfwGetTime();
+        timeDiff = currentTime - lastTime;
+        lastTime = currentTime;
 
-        camera.move();
+        ///////////////////////////////////////////////////////////////////////
+        // EVENTS
 
-        // Enable lighting
-        glUniform1i( enable_shading_id, GL_TRUE );
-
-        glm::mat4 mvp = camera.getMVP( terrain.getModel() );
-        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        terrain.render();
-
-        mvp = camera.getMVP( clanger.getModel() );
-        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        clanger.render();
-
-        mvp = camera.getMVP( clanger2.getModel() );
-        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        clanger2.render();
-
-        mvp = camera.getMVP( clanger3.getModel() );
-        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
-        clanger3.render();
-
-        glfwSwapBuffers( window );
         glfwPollEvents();
 
         // Exit on window close
         if( glfwWindowShouldClose( window ) )
             running = false;
+
+        ///////////////////////////////////////////////////////////////////////
+        // LOGIC
+
+        camera.move();
+
+        //std::cout << glm::to_string( glm::translate( 1.0f, 2.0f, 3.0f ) ) << std::endl;
+        //glm::mat4 asteroid_model = asteroid.getModel();
+        //asteroid.translate( glm::vec3( -asteroid_model[ 3 ][ 0 ], -asteroid_model[ 3 ][ 1 ], -asteroid_model[ 3 ][ 2 ] ) );
+        //asteroid.translate( glm::vec3( sin( 360 * ( timeDiff / 100 ) ), 0.0f, 0.0f ) );
+
+        ///////////////////////////////////////////////////////////////////////
+        // RENDERING
+
+        glClearColor( 0.0f, 0.0f, 0.0f, 0.0f );
+        glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+
+        // Enable lighting
+        glUniform1i( enable_shading_id, GL_TRUE );
+
+        // Terrain
+        glm::mat4 mvp = camera.getMVP( terrain.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        terrain.render();
+
+        // Clanger 1
+        mvp = camera.getMVP( clanger.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        clanger.render();
+
+        // Clanger 2
+        mvp = camera.getMVP( clanger2.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        clanger2.render();
+
+        // Clanger 3
+        mvp = camera.getMVP( clanger3.getModel() );
+        glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        clanger3.render();
+
+        // Asteroid
+        //mvp = camera.getMVP( asteroid.getModel() );
+        //glUniformMatrix4fv( mvp_id, 1, GL_FALSE, &mvp[ 0 ][ 0 ] );
+        //asteroid.render();
+
+        glfwSwapBuffers( window );
     }
 
     // Clean up
