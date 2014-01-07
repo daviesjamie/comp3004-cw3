@@ -372,3 +372,35 @@
 	<string>
 	"objloader.hpp"
 
+1389087593 source:h:\code\comp3004-cw3\shader.cpp
+	<cstdio>
+	<cstdlib>
+	<GL/glew.h>
+	<vector>
+	"utils/filetobuffer.hpp"
+	"shader.hpp"
+
+1389087438 h:\code\comp3004-cw3\utils\filetobuffer.hpp
+
+1389086044 h:\code\comp3004-cw3\shader.hpp
+
+1389087629 source:h:\code\comp3004-cw3\utils\filetobuffer.cpp
+	"filetobuffer.hpp"
+	<cstdio>
+	<cstdlib>
+
+1389087993 source:h:\code\comp3004-cw3\utils\objloader.cpp
+	<cstdio>
+	<cstdlib>
+	<fstream>
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	<sstream>
+	<stdio.h>
+	<string>
+	"objloader.hpp"
+
+1389090265 h:\code\comp3004-cw3\utils\objloader.hpp
+	<glm/glm.hpp>
+	<vector>
+
