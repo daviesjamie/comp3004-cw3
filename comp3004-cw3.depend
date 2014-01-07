@@ -404,3 +404,392 @@
 	<glm/glm.hpp>
 	<vector>
 
+1389104312 source:h:\code\comp3004-cw3\model.cpp
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	<glimg/glimg.h>
+	<glm/glm.hpp>
+	<glm/gtx/transform.hpp>
+	<glm/gtx/string_cast.hpp>
+	<iostream>
+	<memory>
+	<stdio.h>
+	"Model.hpp"
+	"utils/objloader.hpp"
+
+1344265147 h:\graphics\include\gl\glew.h
+	<stddef.h>
+	<inttypes.h>
+	<stdint.h>
+	<inttypes.h>
+	<OpenGL/glu.h>
+	<GL/glu.h>
+
+1301107565 h:\graphics\include\gl\glu.h
+	<stddef.h>
+	<GL/gl.h>
+
+1379591951 h:\graphics\glfw3\include\glfw\glfw3.h
+	<stddef.h>
+	<OpenGL/gl3.h>
+	<OpenGL/gl.h>
+	<OpenGL/glu.h>
+	<GL/glcorearb.h>
+	<GLES/gl.h>
+	<GLES2/gl2.h>
+	<GLES3/gl3.h>
+	<GL/gl.h>
+	<GL/glu.h>
+
+1345022264 h:\graphics\include\glimg\glimg.h
+	"ImageSet.h"
+	"Loaders.h"
+	"TextureGenerator.h"
+
+1345022264 h:\graphics\include\glimg\imageset.h
+	"ImageFormat.h"
+
+1345022264 h:\graphics\include\glimg\imageformat.h
+	<string>
+	<exception>
+
+1345022264 h:\graphics\include\glimg\loaders.h
+	"StbLoader.h"
+	"DdsLoader.h"
+
+1345022264 h:\graphics\include\glimg\stbloader.h
+	<string>
+	"ImageSet.h"
+
+1345022264 h:\graphics\include\glimg\ddsloader.h
+	<string>
+	"ImageSet.h"
+
+1345022264 h:\graphics\include\glimg\texturegenerator.h
+	"ImageSet.h"
+
+1376337655 h:\graphics\include\glm\glm.hpp
+	"core/_fixes.hpp"
+	<cmath>
+	<climits>
+	<cfloat>
+	<limits>
+	<cstdio>
+	"core/setup.hpp"
+	"./core/_detail.hpp"
+	"./core/_vectorize.hpp"
+	"./core/type.hpp"
+	"./core/func_trigonometric.hpp"
+	"./core/func_exponential.hpp"
+	"./core/func_common.hpp"
+	"./core/func_packing.hpp"
+	"./core/func_geometric.hpp"
+	"./core/func_matrix.hpp"
+	"./core/func_vector_relational.hpp"
+	"./core/func_integer.hpp"
+	"./core/func_noise.hpp"
+	"./core/_swizzle.hpp"
+
+1374831960 h:\graphics\include\glm\core\_fixes.hpp
+	<cmath>
+
+1376338729 h:\graphics\include\glm\core\setup.hpp
+	<intrin.h>
+	<immintrin.h>
+	<immintrin.h>
+	<smmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+
+1376337655 h:\graphics\include\glm\core\_detail.hpp
+	"setup.hpp"
+	<cassert>
+	<cstdint>
+
+1376337655 h:\graphics\include\glm\core\_vectorize.hpp
+
+1376337655 h:\graphics\include\glm\core\type.hpp
+	"type_half.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_gentype.hpp"
+	"type_vec1.hpp"
+	"type_vec2.hpp"
+	"type_vec3.hpp"
+	"type_vec4.hpp"
+	"type_mat2x2.hpp"
+	"type_mat2x3.hpp"
+	"type_mat2x4.hpp"
+	"type_mat3x2.hpp"
+	"type_mat3x3.hpp"
+	"type_mat3x4.hpp"
+	"type_mat4x2.hpp"
+	"type_mat4x3.hpp"
+	"type_mat4x4.hpp"
+
+1376337655 h:\graphics\include\glm\core\type_half.hpp
+	<cstdlib>
+	"type_half.inl"
+
+1376338729 h:\graphics\include\glm\core\type_half.inl
+	"_detail.hpp"
+
+1376337655 h:\graphics\include\glm\core\type_float.hpp
+	"type_half.hpp"
+	"setup.hpp"
+
+1376337655 h:\graphics\include\glm\core\type_int.hpp
+	"setup.hpp"
+	"_detail.hpp"
+
+1376337655 h:\graphics\include\glm\core\type_gentype.hpp
+	"type_size.hpp"
+
+1376337655 h:\graphics\include\glm\core\type_size.hpp
+	<cstdlib>
+
+1376337655 h:\graphics\include\glm\core\type_vec1.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec1.inl"
+
+1376337655 h:\graphics\include\glm\core\type_vec.hpp
+	"type_gentype.hpp"
+
+1376338729 h:\graphics\include\glm\core\_swizzle.hpp
+	"_swizzle_func.hpp"
+
+1376337655 h:\graphics\include\glm\core\_swizzle_func.hpp
+
+1376337655 h:\graphics\include\glm\core\type_vec1.inl
+
+1376338729 h:\graphics\include\glm\core\type_vec2.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec2.inl"
+
+1376337655 h:\graphics\include\glm\core\type_vec2.inl
+
+1376338729 h:\graphics\include\glm\core\type_vec3.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec3.inl"
+
+1376337655 h:\graphics\include\glm\core\type_vec3.inl
+
+1376338729 h:\graphics\include\glm\core\type_vec4.hpp
+	"type_vec.hpp"
+	"type_float.hpp"
+	"type_int.hpp"
+	"type_size.hpp"
+	"_swizzle.hpp"
+	"type_vec4.inl"
+
+1376337655 h:\graphics\include\glm\core\type_vec4.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat2x2.hpp
+	"type_mat.hpp"
+	"type_mat2x2.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat.hpp
+	"type_gentype.hpp"
+
+1376337655 h:\graphics\include\glm\core\type_mat2x2.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat2x3.hpp
+	"type_mat.hpp"
+	"type_mat2x3.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat2x3.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat2x4.hpp
+	"type_mat.hpp"
+	"type_mat2x4.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat2x4.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat3x2.hpp
+	"type_mat.hpp"
+	"type_mat3x2.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat3x2.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat3x3.hpp
+	"type_mat.hpp"
+	"type_mat3x3.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat3x3.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat3x4.hpp
+	"type_mat.hpp"
+	"type_mat3x4.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat3x4.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat4x2.hpp
+	"type_mat.hpp"
+	"type_mat4x2.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat4x2.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat4x3.hpp
+	"type_mat.hpp"
+	"type_mat4x3.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat4x3.inl
+
+1376337655 h:\graphics\include\glm\core\type_mat4x4.hpp
+	"type_mat.hpp"
+	"type_mat4x4.inl"
+
+1376337655 h:\graphics\include\glm\core\type_mat4x4.inl
+
+1374831960 h:\graphics\include\glm\core\func_trigonometric.hpp
+	"func_trigonometric.inl"
+
+1376337655 h:\graphics\include\glm\core\func_trigonometric.inl
+
+1374831960 h:\graphics\include\glm\core\func_exponential.hpp
+	"func_exponential.inl"
+
+1374831960 h:\graphics\include\glm\core\func_exponential.inl
+
+1376337655 h:\graphics\include\glm\core\func_common.hpp
+	"_fixes.hpp"
+	"func_common.inl"
+
+1376337655 h:\graphics\include\glm\core\func_common.inl
+
+1376337655 h:\graphics\include\glm\core\func_packing.hpp
+	"func_packing.inl"
+
+1376337655 h:\graphics\include\glm\core\func_packing.inl
+
+1376337655 h:\graphics\include\glm\core\func_geometric.hpp
+	"func_geometric.inl"
+
+1376337655 h:\graphics\include\glm\core\func_geometric.inl
+
+1376337655 h:\graphics\include\glm\core\func_matrix.hpp
+	"func_matrix.inl"
+
+1376337655 h:\graphics\include\glm\core\func_matrix.inl
+
+1376337655 h:\graphics\include\glm\core\func_vector_relational.hpp
+	"_detail.hpp"
+	"func_vector_relational.inl"
+
+1376337655 h:\graphics\include\glm\core\func_vector_relational.inl
+
+1376337655 h:\graphics\include\glm\core\func_integer.hpp
+	"func_integer.inl"
+
+1376338729 h:\graphics\include\glm\core\func_integer.inl
+	<intrin.h>
+
+1376337655 h:\graphics\include\glm\core\func_noise.hpp
+	"func_noise.inl"
+
+1376337655 h:\graphics\include\glm\core\func_noise.inl
+
+1376337655 h:\graphics\include\glm\gtx\transform.hpp
+	"../glm.hpp"
+	"../gtc/matrix_transform.hpp"
+	"transform.inl"
+
+1376337655 h:\graphics\include\glm\gtc\matrix_transform.hpp
+	"../glm.hpp"
+	"matrix_transform.inl"
+
+1376337655 h:\graphics\include\glm\gtc\matrix_transform.inl
+
+1376337655 h:\graphics\include\glm\gtx\transform.inl
+
+1376337655 h:\graphics\include\glm\gtx\string_cast.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtx/integer.hpp"
+	"../gtx/quaternion.hpp"
+	<string>
+	"string_cast.inl"
+
+1376337655 h:\graphics\include\glm\gtc\half_float.hpp
+	"../glm.hpp"
+	"half_float.inl"
+
+1376337655 h:\graphics\include\glm\gtc\half_float.inl
+
+1374831960 h:\graphics\include\glm\gtx\integer.hpp
+	"../glm.hpp"
+	"integer.inl"
+
+1376337655 h:\graphics\include\glm\gtx\integer.inl
+
+1376337655 h:\graphics\include\glm\gtx\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/quaternion.hpp"
+	"quaternion.inl"
+
+1376337655 h:\graphics\include\glm\gtc\quaternion.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"../gtc/constants.hpp"
+	"quaternion.inl"
+
+1374831960 h:\graphics\include\glm\gtc\constants.hpp
+	"../glm.hpp"
+	"../gtc/half_float.hpp"
+	"constants.inl"
+
+1374831960 h:\graphics\include\glm\gtc\constants.inl
+
+1376337655 h:\graphics\include\glm\gtc\quaternion.inl
+	<limits>
+
+1376337655 h:\graphics\include\glm\gtx\quaternion.inl
+	<limits>
+
+1376337655 h:\graphics\include\glm\gtx\string_cast.inl
+	<cstdarg>
+	<cstdio>
+
+1389104321 h:\code\comp3004-cw3\model.hpp
+	<glm/glm.hpp>
+	<string>
+	<vector>
+
+1389105428 source:h:\code\comp3004-cw3\camera.cpp
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<glm/gtx/rotate_vector.hpp>
+	"Camera.hpp"
+
+1376337655 h:\graphics\include\glm\gtx\rotate_vector.hpp
+	"../glm.hpp"
+	"../gtx/transform.hpp"
+	"rotate_vector.inl"
+
+1376337655 h:\graphics\include\glm\gtx\rotate_vector.inl
+
+1389106613 h:\code\comp3004-cw3\camera.hpp
+	<glm/glm.hpp>
+
+1389106039 source:h:\code\comp3004-cw3\main.cpp
+	<GL/glew.h>
+	<GLFW/glfw3.h>
+	<glm/glm.hpp>
+	<glm/gtc/matrix_transform.hpp>
+	<vector>
+	"Camera.hpp"
+	"Model.hpp"
+	"shader.hpp"
+
