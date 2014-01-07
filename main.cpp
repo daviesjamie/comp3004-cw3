@@ -89,7 +89,12 @@ static void keyHandler( GLFWwindow* window, int key, int scancode, int action, i
                 camera.reset();
                 break;
 
-            // Display help
+            // Log camera position to console
+            case GLFW_KEY_PERIOD:
+                camera.status();
+                break;
+
+            // Display help on console
             case GLFW_KEY_H:
             case GLFW_KEY_SLASH:
                 break;
